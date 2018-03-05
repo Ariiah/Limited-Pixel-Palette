@@ -12,10 +12,21 @@ $.ajax ({
   },
   success: function(result) {
     let selection = result[0].colors
-    for (var i = 0; i < selection.length; i++) {
-      console.log(selection[i])
+    // for (var i = 0; i < selection.length; i++) {
+    //   // $('.color-1').css('background-color', `#selection[0]`)
+    //   // $('.color-2').css('background-color', selection[1])
+    //   // $('.color-3').css('background-color', selection[2])
+    //   // $('.color-4').css('background-color', selection[3])
+    //   // $('.color-5').css('background-color', selection[4])
+    //   console.log(selection[i])
+    //   // $('.colors:not(.eraser)').append(selection[i])
+    //   // $('.colors:not(.eraser)').each(() => $(this).attr('style', `background-color: ${}`))
+    // }
+
+    for (let i = 0, j = 1; i < selection.length; i++, j++) {
+      const colour = result[0].colors[i]
+      console.log(colour)
     }
-    // ('api result:', result[0].colors);
 
     // if the result is XML, pass it into your conversion function
     // xml2json(result)
