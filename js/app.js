@@ -25,7 +25,8 @@ $.ajax ({
 
     for (let i = 0, j = 1; i < selection.length; i++, j++) {
       const colour = result[0].colors[i]
-      console.log(colour)
+      const circle = $(`#color-${j}`)
+      circle.attr('style', `background-color: #${colour}`)
     }
 
     // if the result is XML, pass it into your conversion function
