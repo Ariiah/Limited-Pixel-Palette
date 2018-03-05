@@ -27,6 +27,7 @@ $.ajax ({
       const colour = result[0].colors[i]
       const circle = $(`#color-${j}`)
       circle.attr('style', `background-color: #${colour}`)
+      circle.attr('data-colour', `#${colour}`)
     }
 
     // if the result is XML, pass it into your conversion function
@@ -50,11 +51,15 @@ $.ajax ({
 
   ///// GET CURRENT COLOR /////
   let currentColor; // declare unassigned global variable to use later
-  menuColors.addEventListener('click', function(event) {
-    currentColor = event.target.classList[0]
-    event.target.classList.add(currentColor)
-  })
+  // menuColors.addEventListener('click', )
+  $('.colors:not(.eraser)').on('click', drawColourClicked)
 
+
+  function drawColourClicked(e) {
+    e.preventDefault()
+    const colour = $(this).attr('data-colour')
+    console.log(colour)
+  }
 
   ////// DRAGGING ///////
 
