@@ -1,5 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+// $.ajax ({
+//   url: 'http://www.colourlovers.com/api/palettes/random',
+//   dataType: 'jsonp',
+//   crossDomain: 'true'
+//   // success: 200,
+//   jsonp: 'onJSONPLoad'
+// }
+//
+// success: function() {
+//   console.log(palette);
+// })
 
   ////// loops through pixel to make grid of desired size //////
 
@@ -48,12 +59,39 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   canvas.addEventListener("mouseup", end)
 
-  let eraser = document.getElementById('eraser')
-  eraser.addEventListener('click', function (event) {
-    document.eraser.style.backgroundColor = 'white'
+  ////// ERASE //////
+  //
+  // let eraser = document.getElementsByClassName('eraser')
+  // eraser.addEventListener('click', function (event) {
+  //   document.eraser.style.backgroundColor = 'white'
+  // })
+
+  // let currentColor; // declare unassigned global variable to use later
+  // menuColors.addEventListener('click', function(event) {
+  //   currentColor = event.target.classList[0]
+  //   event.target.classList.add(currentColor)
+  // })
+
+//   var node = document.getElementById('eraser');
+//     node.addEventListener('click', function (event) {
+//       while (node.hasChildNodes()) {
+//         node.removeChild(node.firstChild);
+//     }
+// })
+
+  ////// CLEAR ALL //////
+
+  let clear = document.getElementById('clear')
+  // clear.addEventListener('click', function (event) {
+  //   currentColor = event.target.classList[0]
+  //   event.target.classList.remove(currentColor)
+  //
+  // })
+
+  clear.addEventListener('click', function (event) {
+    const colorClasses = ['color-1', 'color-2', 'color-3', 'color-4', 'color-5']
+    colorClasses.forEach(x => $('#canvas').children().removeClass(x))
   })
-
-
 
   ////// for looping through colors //////
 
