@@ -1,16 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-// $.ajax ({
-//   url: 'http://www.colourlovers.com/api/palettes/random',
-//   dataType: 'jsonp',
-//   crossDomain: 'true'
-//   // success: 200,
-//   jsonp: 'onJSONPLoad'
-// }
-//
-// success: function() {
-//   console.log(palette);
-// })
+
+  //
+  // // success: 200,
+  // // jsonp: 'onJSONPLoad'
+
+$.ajax ({
+  url: 'http://www.colourlovers.com/api/palettes/random',
+  data: {
+    format: 'json'
+  },
+  success: function(result) {
+    let selection = result[0].colors
+    for (var i = 0; i < selection.length; i++) {
+      console.log(selection[i])
+    }
+    // ('api result:', result[0].colors);
+
+    // if the result is XML, pass it into your conversion function
+    // xml2json(result)
+
+  }
+})
+
 
   ////// loops through pixel to make grid of desired size //////
 
