@@ -1,15 +1,10 @@
 /* * {
   border: 3px solid lightblue;
 } */
+
 body {
   background-image: url("/Users/moonsilver13/Workspace/Q1/Limited-Pixel-Palette/images/crumpled-paper-texture.jpg");
 }
-
-/* @media (max-width: 400) {
-  body {
-    background-color: lightblue;
-  }
-} */
 
 h1 {
   display: flex;
@@ -37,7 +32,6 @@ h1 {
   /* background-color: #fff; */
 }
 
-
 .outer-canvas {
   /* background-color: #fff; */
   background-color: transparent;
@@ -49,7 +43,6 @@ h1 {
   position: absolute;
 }
 
-
 #canvas {
   background-color: #fff;
   /* background-color: transparent; */
@@ -60,14 +53,12 @@ h1 {
   /* flex-direction: row; */
 }
 
-
 .pixels {
   float: left;
   width: 10px;
   height: 10px;
   border: solid lightgray 1px;
 }
-
 
 #menu {
   background-color: #BDBDBD;
@@ -91,26 +82,6 @@ p {
   border-radius: 50%;
 }
 
-/* .color-1 {
-  background-color: #754A2A;
-}
-
-.color-2 {
-  background-color: #ECA670;
-}
-
-.color-3 {
-  background-color: #B85D67;
-}
-
-.color-4 {
-  background-color: #92333E;
-}
-
-.color-5 {
-  background-color: #680617;
-} */
-
 .eraser {
   /* background-color: #FFFFFF */
   background-color: transparent;
@@ -120,12 +91,3 @@ img {
   width: 45px;
   height: 45px;
 }
-
-
-/* .hues {
-  width: 50px;
-  height: 50px;
-  border: 1px solid black;
-  background-color: blue;
-
-} */

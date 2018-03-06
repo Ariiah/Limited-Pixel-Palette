@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  //
-  // // success: 200,
-  // // jsonp: 'onJSONPLoad'
+  lastColorPicked()
 
 $.ajax ({
   url: 'http://www.colourlovers.com/api/palettes/random',
@@ -10,6 +8,8 @@ $.ajax ({
   },
   success: colourPaletteSuccess
 })
+
+  //////  SHOWS COLORS IN PALETTE //////
 
 function colourPaletteSuccess(result) {
   for (let i = 0, j = 1; i < result[0].colors.length; i++, j++) {
@@ -27,29 +27,22 @@ function colourPaletteSuccess(result) {
   var canvas = document.getElementById('canvas'); // shorthand to call the canvas id in DOM
   for (let i = 0; i < 1681; i++) { // loops through the new div
     let pixel = document.createElement('div'); // creates new div for pixels
-    pixel.classList.add('pixels'); // adds pixel class the the list of classes
-    pixel.addEventListener('click', pixelClicked)
+    pixel.classList.add('pixels'); // adds pixels class the the list of classes
+    // pixel.addEventListener('click', pixelClicked)
     canvas.appendChild(pixel); // actually attaches the pixel div to the canvas, then loops
   } // through the continually add pixels
 
-  function pixelClicked(e) {
-    e.preventDefault()
-    const colour = $('.color-select').attr('data-colour')
-    $(this).attr('style', `background-color: ${colour}`)
-  }
 
-  let menuColors = document.getElementById("menu")
+  ///// GRAB CURRENT COLOR /////
 
-  ///// GET CURRENT COLOR /////
-  $('.colors:not(.eraser)').on('click', drawColourClicked)
-  function drawColourClicked(e) {
-    e.preventDefault()
-    $('.colors:not(.eraser)').removeClass('color-select')
-    $(this).addClass('color-select')
+  let colorPicked
+  function lastColorPicked () {
+    $('#menu').click(function(event){
+      event.preventDefault()
+      colorPicked = $(event.target).css('background-color')
+
+    })
   }
-  // menuColors.addEventListener('click', function(event) {
-  //  currentColor = event.target.classList[0]
-  //  event.target.classList.add(currentColor)
 
   ////// DRAGGING ///////
 
@@ -58,15 +51,16 @@ function colourPaletteSuccess(result) {
   ////// MOUSEDOWN //////
   const start = (event) => { // same as "let start = function(event)" or function start(event)
     dragging = true // changes dragging to work
-    event.target.className = `pixels ${currentColor}` // targets color selected
+    console.log(colorPicked);
+    event.target.style.backgroundColor = `${colorPicked}` // targets color selected
   }
   canvas.addEventListener("mousedown", start)
 
   //////MOUSEOVER /////
 
   const drag = (event) => {
-    if (dragging === true){ // checks if it's still true so draggin continues
-      event.target.className = `pixels ${currentColor}` // same as 'pixels ' + (currentColor)
+    if (dragging === true){ // checks if it's still true so dragging continues
+      event.target.style.backgroundColor = `${colorPicked}` // same as 'pixels ' + (currentColor)
     }
   }
   canvas.addEventListener("mouseover", drag)
@@ -78,37 +72,10 @@ function colourPaletteSuccess(result) {
   }
   canvas.addEventListener("mouseup", end)
 
-  ////// ERASE //////
-  //
-  // let eraser = document.getElementsByClassName('eraser')
-  // eraser.addEventListener('click', function (event) {
-  //   document.eraser.style.backgroundColor = 'white'
-  // })
-
-  // let currentColor; // declare unassigned global variable to use later
-  // menuColors.addEventListener('click', function(event) {
-  //   currentColor = event.target.classList[0]
-  //   event.target.classList.add(currentColor)
-  // })
-
-//   var node = document.getElementById('eraser');
-//     node.addEventListener('click', function (event) {
-//       while (node.hasChildNodes()) {
-//         node.removeChild(node.firstChild);
-//     }
-// })
-
   ////// CLEAR ALL //////
 
-  let clear = document.getElementById('clear')
-  // clear.addEventListener('click', function (event) {
-  //   currentColor = event.target.classList[0]
-  //   event.target.classList.remove(currentColor)
-  //
-  // })
-
-  clear.addEventListener('click', function (event) {
+  $('#clear').on('click', function (e) {
     const colorClasses = ['color-1', 'color-2', 'color-3', 'color-4', 'color-5']
-    colorClasses.forEach(x => $('#canvas').children().removeClass(x))
+    colorClasses.forEach(x => $('#canvas').children().css('background-color', ''))
   })
 });
