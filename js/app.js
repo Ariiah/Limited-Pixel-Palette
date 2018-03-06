@@ -1,26 +1,26 @@
 document.addEventListener('DOMContentLoaded', function() {
   lastColorPicked()
 
-$.ajax ({
-  url: 'https://g-colourloversapi.herokuapp.com/',
-  data: {
-    format: 'json'
-  },
-  success: colourPaletteSuccess
-})
+  $.ajax({
+    url: 'https://g-colourloversapi.herokuapp.com/',
+    data: {
+      format: 'json'
+    },
+    success: colourPaletteSuccess
+  })
 
   //////  SHOWS COLORS IN PALETTE //////
 
-function colourPaletteSuccess(result) {
-  for (let i = 0, j = 1; i < result[0].colors.length; i++, j++) {
-    const colour = result[0].colors[i]
-    const circle = $(`#color-${j}`)
-    circle.attr('style', `background-color: #${colour}`)
-    circle.attr('data-colour', `#${colour}`)
+  function colourPaletteSuccess(result) {
+    for (let i = 0, j = 1; i < result[0].colors.length; i++, j++) {
+      const colour = result[0].colors[i]
+      const circle = $(`#color-${j}`)
+      circle.attr('style', `background-color: #${colour}`)
+      circle.attr('data-colour', `#${colour}`)
+    }
+    // if the result is XML, pass it into your conversion function
+    // xml2json(result)
   }
-  // if the result is XML, pass it into your conversion function
-  // xml2json(result)
-}
 
   ////// loops through pixel to make grid of desired size //////
 
@@ -30,13 +30,14 @@ function colourPaletteSuccess(result) {
     pixel.classList.add('pixels'); // adds pixels class the the list of classes
     // pixel.addEventListener('click', pixelClicked)
     canvas.appendChild(pixel); // actually attaches the pixel div to the canvas, then loops
-  }                           // through the continually add pixels
+  } // through the continually add pixels
 
   ///// GRAB CURRENT COLOR /////
 
   let colorPicked
-  function lastColorPicked () {
-    $('#menu').click(function(event){
+
+  function lastColorPicked() {
+    $('#menu').click(function(event) {
       event.preventDefault()
       colorPicked = $(event.target).css('background-color')
     })
@@ -46,34 +47,37 @@ function colourPaletteSuccess(result) {
 
   let dragging = false
 
-  ////// MOUSEDOWN //////
   const start = (event) => { // same as "let start = function(event)" or function start(event)
     dragging = true // changes dragging to work
-    console.log(colorPicked);
     event.target.style.backgroundColor = `${colorPicked}` // targets color selected
   }
   canvas.addEventListener("mousedown", start)
 
-  //////MOUSEOVER /////
-
   const drag = (event) => {
-    if (dragging === true){ // checks if it's still true so dragging continues
+    if (dragging === true) { // checks if it's still true so dragging continues
       event.target.style.backgroundColor = `${colorPicked}` // same as 'pixels ' + (currentColor)
     }
   }
   canvas.addEventListener("mouseover", drag)
 
-  ////// MOUSEUP //////
-
   const end = (event) => {
-    dragging = false // ends the dragging
+    dragging = false // stops the dragging
   }
   canvas.addEventListener("mouseup", end)
 
   ////// CLEAR ALL //////
 
-  $('#clear').on('click', function (e) {
+  $('#clear').on('click', function(e) {
     const colorClasses = ['color-1', 'color-2', 'color-3', 'color-4', 'color-5']
     colorClasses.forEach(x => $('#canvas').children().css('background-color', ''))
   })
+
+  ////// LOCAL STORAGE //////
+
+  // $('#save').on('click', function(event) {
+  //   // const picture =
+  //     picture.forEach(p => ('#canvas').children())
+
+  // })
+
 });
