@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
   lastColorPicked()
 
 $.ajax ({
-  url: 'http://www.colourlovers.com/api/palettes/random',
+  url: 'https://g-colourloversapi.herokuapp.com/',
   data: {
     format: 'json'
   },
@@ -30,8 +30,7 @@ function colourPaletteSuccess(result) {
     pixel.classList.add('pixels'); // adds pixels class the the list of classes
     // pixel.addEventListener('click', pixelClicked)
     canvas.appendChild(pixel); // actually attaches the pixel div to the canvas, then loops
-  } // through the continually add pixels
-
+  }                           // through the continually add pixels
 
   ///// GRAB CURRENT COLOR /////
 
@@ -40,7 +39,6 @@ function colourPaletteSuccess(result) {
     $('#menu').click(function(event){
       event.preventDefault()
       colorPicked = $(event.target).css('background-color')
-
     })
   }
 
