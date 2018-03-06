@@ -3,7 +3,7 @@
 } */
 
 body {
-  background-image: url("/Users/moonsilver13/Workspace/Q1/Limited-Pixel-Palette/images/crumpled-paper-texture.jpg");
+  background-image: url("../images/crumpled-paper-texture.jpg");
 }
 
 h1 {
@@ -83,7 +83,6 @@ p {
 }
 
 .eraser {
-  /* background-color: #FFFFFF */
   background-color: transparent;
 }
 
