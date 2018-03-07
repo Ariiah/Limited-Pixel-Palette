@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   lastColorPicked()
+  // renderSave()
 
   $.ajax({
     url: 'https://g-colourloversapi.herokuapp.com/',
@@ -27,10 +28,10 @@ document.addEventListener('DOMContentLoaded', function() {
   var canvas = document.getElementById('canvas'); // shorthand to call the canvas id in DOM
   for (let i = 0; i < 1681; i++) { // loops through the new div
     let pixel = document.createElement('div'); // creates new div for pixels
-    pixel.classList.add('pixels'); // adds pixels class the the list of classes
-    // pixel.addEventListener('click', pixelClicked)
-    canvas.appendChild(pixel); // actually attaches the pixel div to the canvas, then loops
-  } // through the continually add pixels
+    pixel.classList.add('pixels');// adds pixels class the the list of classes
+                                  // pixel.addEventListener('click', pixelClicked)
+    canvas.appendChild(pixel);    // actually attaches the pixel div to the canvas, then loops
+  }                               // through the continually add pixels
 
   ///// GRAB CURRENT COLOR /////
 
@@ -74,29 +75,38 @@ document.addEventListener('DOMContentLoaded', function() {
 
   ////// LOCAL STORAGE //////
 
-  $('#save').on('click', function() {
+  $('#save1').on('click', function() {
 
-    let picture = $('#canvas').html()
-    localStorage.setItem('picture', picture)
-    // localStorage.getItem(JSON.parse(localStorage.getItem('picture')))
-
-    // localStorage.getItem(JSON.parse('picture'))
-
-    // if (localStorage.getItem('picture')) {
-    //   $('#canvas').html(localStorage.getItem('picture'));
+    let picture1 = $('#canvas').html()
+    localStorage.setItem('picture1', picture1)
+    // getPic()
+    //
+    // function getPic() {
+    //   parse = localStorage.getItem('picture')
+    //   return parse
     // }
 
-    // $(function() {
-    //   if (localStorage.getItem('picture')) {
-    //     $('#canvas').html(localStorage.getItem('picture'));
-    //   }
-    // })
   })
 
+  // localStorage.getItem('picture')
 
 
+  $('#save2').on('click', function() {
+
+    let picture2 = $('#canvas').html()
+    localStorage.setItem('picture2', picture2)
+  })
+
+  $('#save3').on('click', function() {
+
+    let picture3 = $('#canvas').html()
+    localStorage.setItem('picture3', picture3)
 
 
-
-
+    // function renderSave() {
+    //   let parse = JSON.parse(localStorage.getItem('picture'))
+    //   localStorage.setItem('#canvas', JSON.stringify(parse))
+    //   $('#canvas') = parse
+    // }
+  })
 });
