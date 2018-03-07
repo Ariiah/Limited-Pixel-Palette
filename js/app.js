@@ -19,8 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
       circle.attr('style', `background-color: #${colour}`)
       circle.attr('data-colour', `#${colour}`)
     }
-    // if the result is XML, pass it into your conversion function
-    // xml2json(result)
   }
 
   ////// GRID //////
@@ -29,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
   for (let i = 0; i < 1681; i++) { // loops through the new div
     let pixel = document.createElement('div'); // creates new div for pixels
     pixel.classList.add('pixels');// adds pixels class the the list of classes
-                                  // pixel.addEventListener('click', pixelClicked)
     canvas.appendChild(pixel);    // actually attaches the pixel div to the canvas, then loops
   }                               // through the continually add pixels
 
