@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // xml2json(result)
   }
 
-  ////// loops through pixel to make grid of desired size //////
+  ////// GRID //////
 
   var canvas = document.getElementById('canvas'); // shorthand to call the canvas id in DOM
   for (let i = 0; i < 1681; i++) { // loops through the new div
@@ -73,40 +73,40 @@ document.addEventListener('DOMContentLoaded', function() {
     colorClasses.forEach(x => $('#canvas').children().css('background-color', ''))
   })
 
-  ////// LOCAL STORAGE //////
+  ////// SAVE TO LOCAL STORAGE //////
 
   $('#save1').on('click', function() {
-
     let picture1 = $('#canvas').html()
     localStorage.setItem('picture1', picture1)
-    // getPic()
-    //
-    // function getPic() {
-    //   parse = localStorage.getItem('picture')
-    //   return parse
-    // }
-
   })
 
-  // localStorage.getItem('picture')
-
-
   $('#save2').on('click', function() {
-
     let picture2 = $('#canvas').html()
     localStorage.setItem('picture2', picture2)
   })
 
   $('#save3').on('click', function() {
-
     let picture3 = $('#canvas').html()
     localStorage.setItem('picture3', picture3)
+  })
 
+  ////// RETRIVE FROM LOCAL STORAGE //////
 
-    // function renderSave() {
-    //   let parse = JSON.parse(localStorage.getItem('picture'))
-    //   localStorage.setItem('#canvas', JSON.stringify(parse))
-    //   $('#canvas') = parse
-    // }
+  $('#btn1').on('click', function () {
+    if (typeof(Storage !== 'undefined')){
+      $('#canvas').html(localStorage.getItem('picture1'))
+    }
+  })
+
+  $('#btn2').on('click', function () {
+    if (typeof(Storage !== 'undefined')){
+      $('#canvas').html(localStorage.getItem('picture2'))
+    }
+  })
+
+  $('#btn3').on('click', function () {
+    if (typeof(Storage !== 'undefined')){
+      $('#canvas').html(localStorage.getItem('picture3'))
+    }
   })
 });
