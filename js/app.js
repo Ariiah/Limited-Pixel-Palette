@@ -47,23 +47,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
   let dragging = false
 
-  const start = (event) => { // same as "let start = function(event)" or function start(event)
+  const start = (event) => { // same as 'let start = function(event)' or function start(event)
     dragging = true // changes dragging to work
     event.target.style.backgroundColor = `${colorPicked}` // targets color selected
   }
-  canvas.addEventListener("mousedown", start)
+  canvas.addEventListener('mousedown', start)
 
   const drag = (event) => {
     if (dragging === true) { // checks if it's still true so dragging continues
       event.target.style.backgroundColor = `${colorPicked}` // same as 'pixels ' + (currentColor)
     }
   }
-  canvas.addEventListener("mouseover", drag)
+  canvas.addEventListener('mouseover', drag)
 
   const end = (event) => {
     dragging = false // stops the dragging
   }
-  canvas.addEventListener("mouseup", end)
+  canvas.addEventListener('mouseup', end)
 
   ////// CLEAR ALL //////
 
@@ -74,10 +74,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
   ////// LOCAL STORAGE //////
 
-  // $('#save').on('click', function(event) {
-  //   // const picture =
-  //     picture.forEach(p => ('#canvas').children())
+  $('#save').on('click', function() {
 
-  // })
+    let picture = $('#canvas').html()
+    localStorage.setItem('picture', picture)
+    // localStorage.getItem(JSON.parse(localStorage.getItem('picture')))
+
+    // localStorage.getItem(JSON.parse('picture'))
+
+    // if (localStorage.getItem('picture')) {
+    //   $('#canvas').html(localStorage.getItem('picture'));
+    // }
+
+    // $(function() {
+    //   if (localStorage.getItem('picture')) {
+    //     $('#canvas').html(localStorage.getItem('picture'));
+    //   }
+    // })
+  })
+
+
+
+
+
+
 
 });
