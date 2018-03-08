@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
     localStorage.setItem('picture3', picture3)
   })
 
-  ////// RETRIVE FROM LOCAL STORAGE //////
+  ////// RETRIEVE FROM LOCAL STORAGE //////
 
   $('#btn1').on('click', function () {
     if (typeof(Storage !== 'undefined')){
