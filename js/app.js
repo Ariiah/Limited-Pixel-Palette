@@ -1,6 +1,12 @@
-document.addEventListener('DOMContentLoaded', function() {
-  lastColorPicked()
-  // renderSave()
+$(document).ready(function() {
+
+  ////// GRAB CURRENT COLOR //////
+
+  let colorPicked
+  $('#menu').click(function(event) {
+    event.preventDefault()
+    colorPicked = $(event.target).css('background-color')
+  })
 
   $.ajax({
     url: 'https://g-colourloversapi.herokuapp.com/',
@@ -10,58 +16,35 @@ document.addEventListener('DOMContentLoaded', function() {
     success: colourPaletteSuccess
   })
 
-  //////  SHOWS COLORS IN PALETTE //////
-
-  function colourPaletteSuccess(result) {
-    for (let i = 0, j = 1; i < result[0].colors.length; i++, j++) {
-      const colour = result[0].colors[i]
-      const circle = $(`#color-${j}`)
-      circle.attr('style', `background-color: #${colour}`)
-      circle.attr('data-colour', `#${colour}`)
-    }
-  }
 
   ////// GRID //////
 
-  var canvas = document.getElementById('canvas'); // shorthand to call the canvas id in DOM
-  for (let i = 0; i < 1681; i++) { // loops through the new div
-    let pixel = document.createElement('div'); // creates new div for pixels
-    pixel.classList.add('pixels');// adds pixels class the the list of classes
-    canvas.appendChild(pixel);    // actually attaches the pixel div to the canvas, then loops
-  }                               // through the continually add pixels
-
-  ///// GRAB CURRENT COLOR /////
-
-  let colorPicked
-
-  function lastColorPicked() {
-    $('#menu').click(function(event) {
-      event.preventDefault()
-      colorPicked = $(event.target).css('background-color')
-    })
+  for (var i = 0; i < 1681; i++) {
+    $('<div></div>').appendTo('#canvas').addClass('pixels')
   }
+
 
   ////// DRAGGING ///////
 
-  let dragging = false
+  let isDragging = false;
 
-  const start = (event) => { // same as 'let start = function(event)' or function start(event)
-    dragging = true // changes dragging to work
-    event.target.style.backgroundColor = `${colorPicked}` // targets color selected
-  }
-  canvas.addEventListener('mousedown', start)
+  $('#canvas').on('mousedown', function(e) {
+    isDragging = true
+    $(e.target).css('background-color', `${colorPicked}`)
 
-  const drag = (event) => {
-    if (dragging === true) { // checks if it's still true so dragging continues
-      event.target.style.backgroundColor = `${colorPicked}` // same as 'pixels ' + (currentColor)
+  })
+
+  $('#canvas').on('mousemove', function(e) {
+    if (isDragging) {
+      $(e.target).css('background-color', `${colorPicked}`)
     }
-  }
-  canvas.addEventListener('mouseover', drag)
 
-  const end = (event) => {
-    dragging = false // stops the dragging
-  }
-  canvas.addEventListener('mouseup', end)
+  })
+
+  $('#canvas').on('mouseup', function(e) {
+    isDragging = false
+
+  })
 
   ////// CLEAR ALL //////
 
@@ -74,36 +57,58 @@ document.addEventListener('DOMContentLoaded', function() {
 
   $('#save1').on('click', function() {
     let picture1 = $('#canvas').html()
-    localStorage.setItem('picture1', picture1)
+    lsSave('picture1', picture1)
   })
 
   $('#save2').on('click', function() {
     let picture2 = $('#canvas').html()
-    localStorage.setItem('picture2', picture2)
+    lsSave('picture2', picture2)
   })
 
   $('#save3').on('click', function() {
     let picture3 = $('#canvas').html()
-    localStorage.setItem('picture3', picture3)
+    lsSave('picture3', picture3)
   })
 
-  ////// RETRIEVE FROM LOCAL STORAGE //////
+  ////// RETRIVE FROM LOCAL STORAGE //////
 
-  $('#btn1').on('click', function () {
-    if (typeof(Storage !== 'undefined')){
-      $('#canvas').html(localStorage.getItem('picture1'))
+  $('#btn1').on('click', function() {
+    if (typeof(Storage !== 'undefined')) {
+      lsRetrieve('picture1')
     }
   })
 
-  $('#btn2').on('click', function () {
-    if (typeof(Storage !== 'undefined')){
-      $('#canvas').html(localStorage.getItem('picture2'))
+  $('#btn2').on('click', function() {
+    if (typeof(Storage !== 'undefined')) {
+      lsRetrieve('picture2')
     }
   })
 
-  $('#btn3').on('click', function () {
-    if (typeof(Storage !== 'undefined')){
-      $('#canvas').html(localStorage.getItem('picture3'))
+  $('#btn3').on('click', function() {
+    if (typeof(Storage !== 'undefined')) {
+      lsRetrieve('picture3')
     }
   })
 });
+
+// save some stuff
+function lsSave(name, value) {
+  localStorage.setItem(name, value)
+}
+
+// retrieve some stuff
+function lsRetrieve(val) {
+  $('#canvas').html(localStorage.getItem(val))
+}
+
+//////  SHOWS COLORS IN PALETTE //////
+
+function colourPaletteSuccess(result) {
+  console.log('result', result);
+  for (let i = 0, j = 1; i < result[0].colors.length; i++, j++) {
+    const colour = result[0].colors[i]
+    const circle = $(`#color-${j}`)
+    circle.attr('style', `background-color: #${colour}`)
+    circle.attr('data-colour', `#${colour}`)
+  }
+}
