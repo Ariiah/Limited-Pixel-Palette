@@ -1,5 +1,7 @@
 # Limited-Pixel-Palette
 
+![picture](/img/screenshot.jpg)
+
 Challenge yourself to make a beautiful masterpiece using only five colors!
 
 Select a color and start drawing.
