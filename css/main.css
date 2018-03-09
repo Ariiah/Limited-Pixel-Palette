@@ -55,10 +55,8 @@ h1 {
 .pixels {
   float: left;
   min-width: 10px;
-  /* max-width: 10px; */
   min-height: 10px;
   border: solid #dbd6d6 1px;
-  flex: 1;
 }
 
 .colors:not(#eraser) {
