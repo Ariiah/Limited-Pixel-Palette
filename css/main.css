@@ -20,8 +20,14 @@ h1 {
 
 .main-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   margin-left: 70px;
+}
+
+.canvas-menu-wrap {
+  display: flex;
 }
 
 #canvas {
@@ -82,11 +88,14 @@ h1 {
   background-color: transparent;
 }
 
+.save-menu{
+margin-right: 400px;
+}
+
 .save-container, .button-container {
   width: 200px;
   border-radius: 15px;
   margin-top: 10px;
-  margin-left: 440px;
   display: flex;
   justify-content: space-around;
 }
