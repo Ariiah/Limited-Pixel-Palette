@@ -1,6 +1,6 @@
 # Limited-Pixel-Palette
 
-![picture](/img/screenshot.jpg)
+[picture](/img/screenshot.jpg)
 
 Challenge yourself to make a beautiful masterpiece using only five colors!
 
