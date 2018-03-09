@@ -104,7 +104,6 @@ function lsRetrieve(val) {
 //////  SHOWS COLORS IN PALETTE //////
 
 function colourPaletteSuccess(result) {
-  console.log('result', result);
   for (let i = 0, j = 1; i < result[0].colors.length; i++, j++) {
     const colour = result[0].colors[i]
     const circle = $(`#color-${j}`)
