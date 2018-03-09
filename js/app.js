@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-  ////// GRAB CURRENT COLOR //////
-
   let colorPicked
   $('#menu').click(function(event) {
     event.preventDefault()
@@ -16,15 +14,9 @@ $(document).ready(function() {
     success: colourPaletteSuccess
   })
 
-
-  ////// GRID //////
-
   for (var i = 0; i < 1681; i++) {
     $('<div></div>').appendTo('#canvas').addClass('pixels')
   }
-
-
-  ////// DRAGGING ///////
 
   let isDragging = false;
 
@@ -46,14 +38,10 @@ $(document).ready(function() {
 
   })
 
-  ////// CLEAR ALL //////
-
   $('#clear').on('click', function(e) {
     const colorClasses = ['color-1', 'color-2', 'color-3', 'color-4', 'color-5']
     colorClasses.forEach(x => $('#canvas').children().css('background-color', ''))
   })
-
-  ////// SAVE TO LOCAL STORAGE //////
 
   $('#save1').on('click', function() {
     let picture1 = $('#canvas').html()
@@ -69,8 +57,6 @@ $(document).ready(function() {
     let picture3 = $('#canvas').html()
     lsSave('picture3', picture3)
   })
-
-  ////// RETRIVE FROM LOCAL STORAGE //////
 
   $('#btn1').on('click', function() {
     if (typeof(Storage !== 'undefined')) {
@@ -91,17 +77,13 @@ $(document).ready(function() {
   })
 });
 
-// save some stuff
 function lsSave(name, value) {
   localStorage.setItem(name, value)
 }
 
-// retrieve some stuff
 function lsRetrieve(val) {
   $('#canvas').html(localStorage.getItem(val))
 }
-
-//////  SHOWS COLORS IN PALETTE //////
 
 function colourPaletteSuccess(result) {
   for (let i = 0, j = 1; i < result[0].colors.length; i++, j++) {
