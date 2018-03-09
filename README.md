@@ -1,6 +1,6 @@
 # Limited-Pixel-Palette
 
-[picture](/img/screenshot.jpg)
+![picture](https://github.com/Ariiah/Limited-Pixel-Palette/blob/master/images/screenshot.jpg)
 
 Challenge yourself to make a beautiful masterpiece using only five colors!
 
